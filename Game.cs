@@ -12,8 +12,13 @@ namespace HangMan {
         }
         public bool Play() {
             while (Word.NHiddenCharacters > 0) {
+                if (this.Health < 1) {
+                    Console.Clear();
+                    return false;
+                }
                 char input = '\0';
                 do {
+                    Console.Clear();
                     Console.WriteLine(this);
                     Console.WriteLine("Veuillez entrer un caractere :");
                     input = Console.ReadKey().KeyChar;
@@ -24,6 +29,7 @@ namespace HangMan {
                     TriedCharacters.Add(input);
                 }
             }
+            Console.Clear();
             return true;
         }
         public bool IsCharAvailableToPlayer(char c) {
